@@ -2,17 +2,23 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Navbar = (props) => {
-  let greeting;
+  let greeting, log;
   if (props.user) {
     greeting = (
       <p className="navbar-item has-text-white">Hello, {props.user}</p>
     );
+    log = (
+      <Link to="/logout" className="button is-primary">
+        <strong>Log out</strong>
+      </Link>
+    );
+  } else {
+    log = (
+      <Link to="/login" className="button is-primary">
+        <strong>Log in</strong>
+      </Link>
+    );
   }
-  let login = (
-    <Link to="/sign_in" className="button is-primary">
-      <strong>Sign in</strong>
-    </Link>
-  );
 
   return (
     <nav className="navbar is-link">
@@ -43,7 +49,7 @@ const Navbar = (props) => {
         <div className="navbar-end">
           <div className="navbar-item">
             {greeting}
-            <div className="buttons">{login}</div>
+            <div className="buttons">{log}</div>
           </div>
         </div>
       </div>

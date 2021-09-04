@@ -32,7 +32,7 @@ class NewQuestion extends Component {
 
   render() {
     return (
-      <div className="container">
+      <>
         <section className="section has-text-centered">
           <h2 className="title is-4">Create new question</h2>
         </section>
@@ -72,7 +72,7 @@ class NewQuestion extends Component {
           </div>
           <div className="column is-hidden-touch"></div>
         </div>
-      </div>
+      </>
     );
   }
 }

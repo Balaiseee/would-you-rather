@@ -27,9 +27,9 @@ class Login extends Component {
     ));
 
     return (
-      <div className="container">
+      <>
         <section className="section has-text-centered">
-          <h2 className="title is-4">Sign in</h2>
+          <h2 className="title is-4">Log in</h2>
         </section>
         <div className="columns is-centered is-vcentered">
           <div className="column is-hidden-touch"></div>
@@ -47,24 +47,32 @@ class Login extends Component {
                   className="button is-primary is-fullwidth"
                   type="submit"
                 >
-                  Sign in
+                  Log in
                 </button>
               </div>
             </form>
           </div>
           <div className="column is-hidden-touch"></div>
         </div>
-      </div>
+      </>
     );
   }
 }
+
 function mapStateToProps({ authedUser, users }) {
   const usersWithoutAuthedUser = Object.values(users).filter(
     (user) => user.id !== authedUser
   );
-  const currentUser = Object.values(users).filter(
+  let currentUser = Object.values(users).filter(
     (user) => user.id === authedUser
   );
+  if (currentUser.length === 0)
+    currentUser = [
+      {
+        id: "",
+        name: "",
+      },
+    ];
 
   return {
     users: currentUser.concat(usersWithoutAuthedUser),
