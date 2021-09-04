@@ -56,6 +56,7 @@ const Navbar = (props) => {
     </nav>
   );
 };
+
 function mapStateToProps({ users, authedUser }) {
   if (users[authedUser]) {
     const user = users[authedUser].name;

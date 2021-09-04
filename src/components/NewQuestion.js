@@ -76,6 +76,7 @@ class NewQuestion extends Component {
     );
   }
 }
+
 function mapStateToProps({ authedUser }) {
   return { authedUser };
 }

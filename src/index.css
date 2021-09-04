@@ -3,6 +3,7 @@
   -ms-flex-align: center;
   align-items: center;
 }
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
