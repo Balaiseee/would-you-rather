@@ -1,17 +1,34 @@
 import { connect } from "react-redux";
 
 const PollOption = (props) => {
+  const percentage = (optionA, optionB) => {
+    if (optionA) {
+      return (optionA / (optionA + optionB)) * 100;
+    }
+    return 0;
+  };
+  let otherOption;
+  if (props.option === "optionOne") {
+    otherOption = "optionTwo";
+  } else {
+    otherOption = "optionOne";
+  }
+  let votePercentage = Math.round(
+    percentage(
+      props.question[props.option].votes.length,
+      props.question[otherOption].votes.length
+    )
+  );
+
   let vote;
   if (props.hasAnswered) {
     vote = (
-      <p>
-        <strong>
-          {`${props.question[props.option].votes.length} out of ${
-            props.question.optionOne.votes.length +
-            props.question.optionTwo.votes.length
-          } votes`}
-        </strong>
-      </p>
+      <strong>
+        {`${props.question[props.option].votes.length} out of ${
+          props.question.optionOne.votes.length +
+          props.question.optionTwo.votes.length
+        } votes - ${votePercentage}% `}
+      </strong>
     );
   } else {
     vote = (
@@ -24,20 +41,6 @@ const PollOption = (props) => {
       </button>
     );
   }
-  let otherOption;
-  if (props.option === "optionOne") {
-    otherOption = "optionTwo";
-  } else {
-    otherOption = "optionOne";
-  }
-
-  const percentage = (optionA, optionB) => {
-    if (optionA) {
-      return (optionA / (optionA + optionB)) * 100;
-    }
-    return 0;
-  };
-
   return (
     <div className="box">
       <article className="media is-vcentered">
@@ -46,10 +49,7 @@ const PollOption = (props) => {
             <p>{props.question[props.option].text}</p>
             <progress
               className="progress is-info"
-              value={percentage(
-                props.question[props.option].votes.length,
-                props.question[otherOption].votes.length
-              )}
+              value={votePercentage}
               max="100"
             ></progress>
             {vote}

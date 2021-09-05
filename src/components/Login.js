@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { setAuthedUser } from "../actions/authedUser.js";
 
 class Login extends Component {
@@ -14,7 +15,14 @@ class Login extends Component {
     event.preventDefault();
     if (this.state.user) {
       this.props.dispatch(setAuthedUser(this.state.user));
-      this.props.history.push("/");
+      if (
+        window.location.pathname !== "/login" &&
+        window.location.pathname !== "/logout"
+      )
+        this.props.history.push(window.location.pathname);
+      else {
+        this.props.history.push("/");
+      }
     }
   };
 
@@ -25,7 +33,6 @@ class Login extends Component {
         {user.name}
       </option>
     ));
-
     return (
       <>
         <section className="section has-text-centered">
@@ -79,4 +86,4 @@ function mapStateToProps({ authedUser, users }) {
   };
 }
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));

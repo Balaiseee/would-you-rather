@@ -21,6 +21,16 @@ const Poll = (props) => {
         })
       );
     };
+    // Make sure handleClick run only once
+    const handleClickOnce = (function (event) {
+      let executed = false;
+      return function (event) {
+        if (!executed) {
+          executed = true;
+          handleClick(event);
+        }
+      };
+    })();
     return (
       <>
         <div className="box">
@@ -32,13 +42,13 @@ const Poll = (props) => {
                   id={props.match.params.id}
                   option="optionOne"
                   hasAnswered={hasAnswered(props.authedUser, props.question)}
-                  handleClick={handleClick}
+                  handleClick={handleClickOnce}
                 />
                 <PollOption
                   id={props.match.params.id}
                   option="optionTwo"
                   hasAnswered={hasAnswered(props.authedUser, props.question)}
-                  handleClick={handleClick}
+                  handleClick={handleClickOnce}
                 />
               </div>
             </div>
@@ -47,7 +57,7 @@ const Poll = (props) => {
       </>
     );
   } else {
-    return <Redirect to="/" />;
+    return <Redirect to="/404" />;
   }
 };
 

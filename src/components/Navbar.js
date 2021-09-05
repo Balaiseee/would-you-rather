@@ -5,7 +5,9 @@ const Navbar = (props) => {
   let greeting, log;
   if (props.user) {
     greeting = (
-      <p className="navbar-item has-text-white">Hello, {props.user}</p>
+      <p className="navbar-item is-hidden-touch has-text-white">
+        Hello, {props.user}
+      </p>
     );
     log = (
       <Link to="/logout" className="button is-primary">
@@ -58,14 +60,10 @@ const Navbar = (props) => {
 };
 
 function mapStateToProps({ users, authedUser }) {
-  if (users[authedUser]) {
+  if (authedUser) {
     const user = users[authedUser].name;
     return {
       user,
-    };
-  } else {
-    return {
-      user: "",
     };
   }
 }
