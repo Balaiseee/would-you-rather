@@ -14,11 +14,7 @@ class NewQuestion extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      this.state.optionOneText &&
-      this.state.optionTwoText &&
-      this.props.authedUser
-    ) {
+    if (this.state.optionOneText && this.state.optionTwoText && this.props.authedUser) {
       this.props.dispatch(
         handleAddQuestion({
           optionOneText: this.state.optionOneText,
@@ -43,25 +39,13 @@ class NewQuestion extends Component {
               <div className="field">
                 <label className="label">Would you rather ?</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    name="optionOneText"
-                    onChange={this.handleChange}
-                    required
-                  />
+                  <input className="input" type="text" name="optionOneText" onChange={this.handleChange} required />
                 </div>
               </div>
               <div className="field">
                 <label className="label has-text-centered">Or</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    name="optionTwoText"
-                    onChange={this.handleChange}
-                    required
-                  />
+                  <input className="input" type="text" name="optionTwoText" onChange={this.handleChange} required />
                 </div>
               </div>
 

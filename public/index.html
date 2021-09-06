@@ -4,19 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
     <title>Would you rather</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
   </head>
   <body>
     <div id="root"></div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const $navbarBurgers = Array.prototype.slice.call(
-          document.querySelectorAll(".navbar-burger"),
-          0
-        );
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
 
         if ($navbarBurgers.length > 0) {
           $navbarBurgers.forEach((el) => {

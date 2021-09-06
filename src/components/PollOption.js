@@ -14,10 +14,7 @@ const PollOption = (props) => {
     otherOption = "optionOne";
   }
   let votePercentage = Math.round(
-    percentage(
-      props.question[props.option].votes.length,
-      props.question[otherOption].votes.length
-    )
+    percentage(props.question[props.option].votes.length, props.question[otherOption].votes.length)
   );
 
   let vote;
@@ -25,18 +22,13 @@ const PollOption = (props) => {
     vote = (
       <strong>
         {`${props.question[props.option].votes.length} out of ${
-          props.question.optionOne.votes.length +
-          props.question.optionTwo.votes.length
+          props.question.optionOne.votes.length + props.question.optionTwo.votes.length
         } votes - ${votePercentage}% `}
       </strong>
     );
   } else {
     vote = (
-      <button
-        className="button is-link"
-        value={props.option}
-        onClick={props.handleClick}
-      >
+      <button className="button is-link" value={props.option} onClick={props.handleClick}>
         Vote
       </button>
     );
@@ -47,15 +39,9 @@ const PollOption = (props) => {
         <div className="media-content">
           <div className="content">
             <p>{props.question[props.option].text}</p>
-            <progress
-              className="progress is-info"
-              value={votePercentage}
-              max="100"
-            ></progress>
+            <progress className="progress is-info" value={votePercentage} max="100"></progress>
             {vote}
-            {props.question[props.option].votes.includes(props.authedUser) && (
-              <span className="tag">Your choice</span>
-            )}
+            {props.question[props.option].votes.includes(props.authedUser) && <span className="tag">Your choice</span>}
           </div>
         </div>
       </article>

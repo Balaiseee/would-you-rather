@@ -15,10 +15,7 @@ class Login extends Component {
     event.preventDefault();
     if (this.state.user) {
       this.props.dispatch(setAuthedUser(this.state.user));
-      if (
-        window.location.pathname !== "/login" &&
-        window.location.pathname !== "/logout"
-      )
+      if (window.location.pathname !== "/login" && window.location.pathname !== "/logout")
         this.props.history.push(window.location.pathname);
       else {
         this.props.history.push("/");
@@ -50,10 +47,7 @@ class Login extends Component {
                 </div>
               </div>
               <div className="control">
-                <button
-                  className="button is-primary is-fullwidth"
-                  type="submit"
-                >
+                <button className="button is-primary is-fullwidth" type="submit">
                   Log in
                 </button>
               </div>
@@ -67,12 +61,8 @@ class Login extends Component {
 }
 
 function mapStateToProps({ authedUser, users }) {
-  const usersWithoutAuthedUser = Object.values(users).filter(
-    (user) => user.id !== authedUser
-  );
-  let currentUser = Object.values(users).filter(
-    (user) => user.id === authedUser
-  );
+  const usersWithoutAuthedUser = Object.values(users).filter((user) => user.id !== authedUser);
+  let currentUser = Object.values(users).filter((user) => user.id === authedUser);
   if (currentUser.length === 0)
     currentUser = [
       {

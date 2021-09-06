@@ -19,12 +19,8 @@ const Leaderboard = (props) => {
 };
 
 function mapStateToProps({ authedUser, users }) {
-  const usersWithoutAuthedUser = Object.values(users).filter(
-    (user) => user.id !== authedUser
-  );
-  const currentUser = Object.values(users).filter(
-    (user) => user.id === authedUser
-  );
+  const usersWithoutAuthedUser = Object.values(users).filter((user) => user.id !== authedUser);
+  const currentUser = Object.values(users).filter((user) => user.id === authedUser);
 
   return {
     users: currentUser.concat(usersWithoutAuthedUser),

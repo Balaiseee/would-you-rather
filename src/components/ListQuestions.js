@@ -11,16 +11,10 @@ const ListQuestions = (props) => {
 
 function mapStateToProps({ questions, users, authedUser }) {
   // Sort the questions list from the most recently created to the least recently created
-  const questionIds = Object.keys(questions).sort(
-    (a, b) => questions[b].timestamp - questions[a].timestamp
-  );
+  const questionIds = Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
   return {
-    questionsAnswered: questionIds.filter(
-      (id) => id in users[authedUser].answers
-    ),
-    questionsUnanswered: questionIds.filter(
-      (id) => !(id in users[authedUser].answers)
-    ),
+    questionsAnswered: questionIds.filter((id) => id in users[authedUser].answers),
+    questionsUnanswered: questionIds.filter((id) => !(id in users[authedUser].answers)),
   };
 }
 

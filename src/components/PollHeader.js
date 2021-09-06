@@ -6,10 +6,7 @@ const PollHeader = (props) => {
       <figure className="image is-128x128">
         <img
           className="is-rounded"
-          src={
-            window.location.origin +
-            props.users[props.question.author].avatarURL
-          }
+          src={window.location.origin + props.users[props.question.author].avatarURL}
           alt={props.users[props.question.author].name}
         />
       </figure>
